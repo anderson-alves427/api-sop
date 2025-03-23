@@ -18,9 +18,11 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "empenho", uniqueConstraints = {
         @UniqueConstraint(columnNames = "numeroEmpenho", name = "uniqueNumeroEmpenho")
 })
@@ -44,7 +46,7 @@ public class EmpenhoEntity {
     @Column(length = 500)
     private String observacao;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "despesa_id", insertable = false, updatable = false)
     private DespesaEntity despesaEntity;
 

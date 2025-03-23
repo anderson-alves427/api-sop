@@ -13,4 +13,6 @@ public interface EmpenhoRepository extends JpaRepository<EmpenhoEntity, UUID> {
     @Query("SELECT COUNT(e) FROM EmpenhoEntity e WHERE EXTRACT(YEAR FROM e.dataEmpenho) = :ano")
     long countByAno(@Param("ano") int ano);
 
+    boolean existsByDespesaId(UUID despesaId);
+
 }
