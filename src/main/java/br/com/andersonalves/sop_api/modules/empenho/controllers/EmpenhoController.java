@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andersonalves.sop_api.modules.empenho.dtos.CreateEmpenhoDTO;
-import br.com.andersonalves.sop_api.modules.empenho.entities.EmpenhoEntity;
 import br.com.andersonalves.sop_api.modules.empenho.services.CreateEmpenhoService;
 import jakarta.validation.Valid;
 

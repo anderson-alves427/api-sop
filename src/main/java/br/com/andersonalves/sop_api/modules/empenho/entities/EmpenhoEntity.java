@@ -5,11 +5,14 @@ import java.time.LocalDate;
 
 import java.util.UUID;
 
+import br.com.andersonalves.sop_api.modules.despesa.entities.DespesaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
@@ -41,11 +44,20 @@ public class EmpenhoEntity {
     @Column(length = 500)
     private String observacao;
 
-    public EmpenhoEntity(String numeroEmpenho, LocalDate dataEmpenho, BigDecimal valorEmpenho, String observacao) {
+    @ManyToOne()
+    @JoinColumn(name = "despesa_id", insertable = false, updatable = false)
+    private DespesaEntity despesaEntity;
+
+    @Column(name = "despesa_id", nullable = false)
+    private UUID despesaId;
+
+    public EmpenhoEntity(String numeroEmpenho, LocalDate dataEmpenho, BigDecimal valorEmpenho, String observacao,
+            UUID despesaId) {
         this.numeroEmpenho = numeroEmpenho;
         this.dataEmpenho = dataEmpenho;
         this.valorEmpenho = valorEmpenho;
         this.observacao = observacao;
+        this.despesaId = despesaId;
     }
 
 }

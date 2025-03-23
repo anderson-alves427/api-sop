@@ -1,7 +1,6 @@
 package br.com.andersonalves.sop_api.modules.empenho.services;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class CreateEmpenhoService {
         String numeroEmpenho = this.generateNumeroEmpenho(empenhoDto.dataEmpenho());
 
         EmpenhoEntity empenho = new EmpenhoEntity(numeroEmpenho, empenhoDto.dataEmpenho(),
-                empenhoDto.valorEmpenho(), empenhoDto.observacao());
+                empenhoDto.valorEmpenho(), empenhoDto.observacao(), empenhoDto.despesaId());
 
         return this.empenhoRepository.save(empenho);
     }
