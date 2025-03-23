@@ -7,19 +7,25 @@ import java.util.UUID;
 
 import br.com.andersonalves.sop_api.modules.despesa.enums.StatusDespesa;
 import br.com.andersonalves.sop_api.modules.despesa.enums.TipoDespesa;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-@Entity(name = "despesa")
+@Entity
+@Table(name = "despesa", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "numeroProtocolo", name = "uniqueNumeroProtocolo")
+})
 public class DespesaEntity {
 
     @Id
@@ -27,6 +33,7 @@ public class DespesaEntity {
     private UUID id;
 
     @Pattern(regexp = "\\d{5}\\.\\d{6}/\\d{4}-\\d{2}", message = "Número de protocolo inválido. Exemplo: #####.######/####-##")
+    @Column(nullable = false, unique = true)
     private String numeroProtocolo;
 
     @Enumerated(EnumType.STRING)
