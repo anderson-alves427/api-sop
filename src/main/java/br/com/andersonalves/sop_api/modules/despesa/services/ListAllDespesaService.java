@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.andersonalves.sop_api.modules.despesa.entities.DespesaEntity;
-import br.com.andersonalves.sop_api.modules.despesa.repositories.DespesaRepository;
+import br.com.andersonalves.sop_api.modules.despesa.repository.DespesaRepository;
 
 @Service
 public class ListAllDespesaService {

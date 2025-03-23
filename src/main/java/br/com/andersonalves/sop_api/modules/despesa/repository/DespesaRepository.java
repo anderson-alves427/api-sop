@@ -1,4 +1,4 @@
-package br.com.andersonalves.sop_api.modules.despesa.repositories;
+package br.com.andersonalves.sop_api.modules.despesa.repository;
 
 import java.util.Optional;
 import java.util.UUID;
