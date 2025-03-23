@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.andersonalves.sop_api.exceptions.DespesaNotFoundException;
-import br.com.andersonalves.sop_api.exceptions.NumeroProtocoloFoundException;
 import br.com.andersonalves.sop_api.modules.despesa.repository.DespesaRepository;
 import br.com.andersonalves.sop_api.modules.empenho.dtos.CreateEmpenhoDTO;
 import br.com.andersonalves.sop_api.modules.empenho.entities.EmpenhoEntity;

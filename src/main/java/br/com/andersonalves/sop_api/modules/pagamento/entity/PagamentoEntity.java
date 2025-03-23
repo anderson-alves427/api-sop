@@ -50,16 +50,16 @@ public class PagamentoEntity {
     private EmpenhoEntity empenhoEntity;
 
     @Column(name = "empenho_id", nullable = false)
-    private UUID eempenhoId;
+    private UUID empenhoId;
 
     public PagamentoEntity(String numeroPagamento, LocalDate dataPagamento, BigDecimal valorPagamento,
             String observacao,
-            UUID eempenhoId) {
+            UUID empenhoId) {
         this.numeroPagamento = numeroPagamento;
         this.dataPagamento = dataPagamento;
         this.valorPagamento = valorPagamento;
         this.observacao = observacao;
-        this.eempenhoId = eempenhoId;
+        this.empenhoId = empenhoId;
     }
 
 }
