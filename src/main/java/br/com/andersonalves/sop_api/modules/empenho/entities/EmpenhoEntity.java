@@ -41,4 +41,11 @@ public class EmpenhoEntity {
     @Column(length = 500)
     private String observacao;
 
+    public EmpenhoEntity(String numeroEmpenho, LocalDate dataEmpenho, BigDecimal valorEmpenho, String observacao) {
+        this.numeroEmpenho = numeroEmpenho;
+        this.dataEmpenho = dataEmpenho;
+        this.valorEmpenho = valorEmpenho;
+        this.observacao = observacao;
+    }
+
 }

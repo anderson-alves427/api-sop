@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.andersonalves.sop_api.modules.empenho.dtos.CreateEmpenhoDTO;
 import br.com.andersonalves.sop_api.modules.empenho.entities.EmpenhoEntity;
 import br.com.andersonalves.sop_api.modules.empenho.services.CreateEmpenhoService;
 import jakarta.validation.Valid;
@@ -19,9 +20,9 @@ public class EmpenhoController {
     private CreateEmpenhoService createEmpenhoService;
 
     @PostMapping("")
-    public ResponseEntity<Object> create(@Valid @RequestBody EmpenhoEntity empenhoEntity) {
+    public ResponseEntity<Object> create(@Valid @RequestBody CreateEmpenhoDTO dto) {
         try {
-            var result = this.createEmpenhoService.execute(empenhoEntity);
+            var result = createEmpenhoService.execute(dto);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
