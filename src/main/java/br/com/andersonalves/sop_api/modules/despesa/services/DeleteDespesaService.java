@@ -20,8 +20,6 @@ public class DeleteDespesaService {
 
     public void execute(UUID id) {
 
-        System.out.println(empenhoRepository.existsByDespesaId(id));
-
         if (empenhoRepository.existsByDespesaId(id)) {
             throw new ExistsDespesaWithEmpenhoException();
         }
