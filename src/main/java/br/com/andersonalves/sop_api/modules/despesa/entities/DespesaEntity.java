@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.andersonalves.sop_api.modules.despesa.enums.StatusDespesa;
 import br.com.andersonalves.sop_api.modules.despesa.enums.TipoDespesa;
 import jakarta.persistence.Column;
@@ -18,7 +22,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -32,15 +35,18 @@ public class DespesaEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Pattern(regexp = "\\d{5}\\.\\d{6}/\\d{4}-\\d{2}", message = "Número de protocolo inválido. Exemplo: #####.######/####-##")
+    // @Pattern(regexp = "\\d{5}\\.\\d{6}/\\d{4}-\\d{2}", message = "Número de
+    // protocolo inválido. Exemplo: #####.######/####-##")
     @Column(nullable = false, unique = true)
-    private String numeroProtocolo;
+    private UUID numeroProtocolo = UUID.randomUUID();
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Tipo de despesa é obrigatório")
     private TipoDespesa tipoDespesa;
 
-    @NotNull(message = "Data do protocolo é obrigatória")
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataProtocolo;
 
     @NotNull(message = "Data de vencimento é obrigatória")

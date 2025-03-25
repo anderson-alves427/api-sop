@@ -31,7 +31,6 @@ public class EditDespesaService {
                     "O valor da despesa não pode ser menor que o total empenhado (R$ " + totalEmpenhado + ").");
         }
 
-        despesa.setNumeroProtocolo(dto.numeroProtocolo());
         despesa.setDataProtocolo(dto.dataProtocolo());
         despesa.setDataVencimento(dto.dataVencimento());
         despesa.setCredor(dto.credor());

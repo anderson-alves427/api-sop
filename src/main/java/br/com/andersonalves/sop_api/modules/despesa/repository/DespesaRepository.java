@@ -9,6 +9,6 @@ import br.com.andersonalves.sop_api.modules.despesa.entities.DespesaEntity;
 
 public interface DespesaRepository extends JpaRepository<DespesaEntity, UUID> {
 
-    Optional<DespesaEntity> findByNumeroProtocolo(String numeroProtocolo);
+    Optional<DespesaEntity> findByNumeroProtocolo(UUID numeroProtocolo);
 
 }
