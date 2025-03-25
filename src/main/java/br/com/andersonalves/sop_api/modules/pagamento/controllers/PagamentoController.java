@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.andersonalves.sop_api.modules.despesa.services.DeleteDespesaService;
 import br.com.andersonalves.sop_api.modules.pagamento.dtos.CreatePagamentoDTO;
 import br.com.andersonalves.sop_api.modules.pagamento.services.CreatePagamentoService;
 import br.com.andersonalves.sop_api.modules.pagamento.services.DeletePagamentoService;
