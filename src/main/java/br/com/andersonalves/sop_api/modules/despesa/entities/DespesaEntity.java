@@ -63,6 +63,7 @@ public class DespesaEntity {
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)
-    private StatusDespesa status;
+    @Column(nullable = false)
+    private StatusDespesa status = StatusDespesa.AGUARDANDO_EMPENHO;
 
 }
