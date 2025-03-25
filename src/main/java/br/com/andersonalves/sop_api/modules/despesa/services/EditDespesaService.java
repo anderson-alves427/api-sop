@@ -31,11 +31,9 @@ public class EditDespesaService {
                     "O valor da despesa não pode ser menor que o total empenhado (R$ " + totalEmpenhado + ").");
         }
 
-        despesa.setDataProtocolo(dto.dataProtocolo());
         despesa.setDataVencimento(dto.dataVencimento());
         despesa.setCredor(dto.credor());
         despesa.setValor(dto.valor());
-        despesa.setStatus(dto.status());
         despesa.setTipoDespesa(dto.tipoDespesa());
 
         despesa = despesaRepository.save(despesa);
