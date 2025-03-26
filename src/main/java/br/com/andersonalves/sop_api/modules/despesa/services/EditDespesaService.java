@@ -35,6 +35,7 @@ public class EditDespesaService {
         despesa.setCredor(dto.credor());
         despesa.setValor(dto.valor());
         despesa.setTipoDespesa(dto.tipoDespesa());
+        despesa.setDescricao(dto.descricao());
 
         despesa = despesaRepository.save(despesa);
         return despesa;

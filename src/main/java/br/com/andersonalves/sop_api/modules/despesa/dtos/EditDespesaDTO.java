@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record EditDespesaDTO(
-                @NotNull LocalDate dataVencimento, @NotBlank String credor,
-                @NotNull @DecimalMin(value = "0.01", message = "O valor da despesa deve ser maior que zero.") BigDecimal valor,
-                TipoDespesa tipoDespesa) {
+        @NotNull LocalDate dataVencimento, @NotBlank String credor,
+        @NotNull @DecimalMin(value = "0.01", message = "O valor da despesa deve ser maior que zero.") BigDecimal valor,
+        TipoDespesa tipoDespesa, String descricao) {
 }
