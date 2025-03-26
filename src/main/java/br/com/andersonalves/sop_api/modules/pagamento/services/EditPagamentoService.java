@@ -17,7 +17,7 @@ public class EditPagamentoService {
 
     public PagamentoEntity execute(UUID id, EditPagamentoDTO dto) {
         PagamentoEntity pagamento = pagamentoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
+                .orElseThrow(() -> new IllegalStateException("Pagamento não encontrado"));
 
         pagamento.setDataPagamento(dto.dataPagamento());
         pagamento.setObservacao(dto.observacao());
