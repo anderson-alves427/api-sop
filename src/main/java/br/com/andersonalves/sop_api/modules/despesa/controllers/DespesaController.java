@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.andersonalves.sop_api.modules.despesa.dtos.CreateDespesaDTO;
 import br.com.andersonalves.sop_api.modules.despesa.dtos.EditDespesaDTO;
 import br.com.andersonalves.sop_api.modules.despesa.entities.DespesaEntity;
 import br.com.andersonalves.sop_api.modules.despesa.services.CreateDespesaService;
@@ -40,9 +41,9 @@ public class DespesaController {
     private EditDespesaService editDespesaService;
 
     @PostMapping("")
-    public ResponseEntity<Object> create(@Valid @RequestBody DespesaEntity despesaEntity) {
+    public ResponseEntity<Object> create(@Valid @RequestBody CreateDespesaDTO despesa) {
         try {
-            var result = createDespesaService.execute(despesaEntity);
+            var result = createDespesaService.execute(despesa);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

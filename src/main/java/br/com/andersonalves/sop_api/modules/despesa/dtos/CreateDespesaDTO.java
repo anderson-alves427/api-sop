@@ -1,4 +1,4 @@
-package br.com.andersonalves.sop_api.modules.despesa.entities;
+package br.com.andersonalves.sop_api.modules.despesa.dtos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,33 +12,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.andersonalves.sop_api.modules.despesa.enums.StatusDespesa;
 import br.com.andersonalves.sop_api.modules.despesa.enums.TipoDespesa;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity
-@NoArgsConstructor
-@Table(name = "despesa", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "numeroProtocolo", name = "uniqueNumeroProtocolo")
-})
-public class DespesaEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    @Column(unique = true, nullable = false)
-    private String numeroProtocolo;
+@Getter
+@Setter
+public class CreateDespesaDTO {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Tipo de despesa é obrigatório")
@@ -65,18 +48,4 @@ public class DespesaEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusDespesa status = StatusDespesa.AGUARDANDO_EMPENHO;
-
-    // public DespesaEntity(String numeroProtocolo, TipoDespesa tipoDespesa, LocalDateTime dataProtocolo,
-    //         LocalDate dataVencimento, String credor, String descricao,
-    //         BigDecimal valor, StatusDespesa status) {
-    //     this.numeroProtocolo = numeroProtocolo;
-    //     this.tipoDespesa = tipoDespesa;
-    //     this.dataProtocolo = dataProtocolo;
-    //     this.dataVencimento = dataVencimento;
-    //     this.credor = credor;
-    //     this.descricao = descricao;
-    //     this.valor = valor;
-    //     this.status = status;
-    // }
-
 }
