@@ -32,7 +32,7 @@ public class PagamentoEntity {
     private UUID id;
 
     @NotNull
-    @Pattern(regexp = "^\\d{4}NE\\d{4}$", message = "O número do pagamento deve seguir o formato YYYYNE0000")
+    @Pattern(regexp = "^\\d{4}NP\\d{4}$", message = "O número do pagamento deve seguir o formato YYYYNE0000")
     @Column(nullable = false, unique = true, length = 12)
     private String numeroPagamento;
 

@@ -45,6 +45,6 @@ public class CreatePagamentoService {
     private String generateNumeroPagamento(LocalDate dataPagamento) {
         int ano = dataPagamento.getYear();
         long sequencial = pagamentoRepository.countByAno(ano) + 1;
-        return String.format("%dNE%04d", ano, sequencial);
+        return String.format("%dNP%04d", ano, sequencial);
     }
 }

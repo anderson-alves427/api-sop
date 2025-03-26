@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.andersonalves.sop_api.modules.despesa.entities.DespesaEntity;
 import br.com.andersonalves.sop_api.modules.empenho.dtos.CreateEmpenhoDTO;
 import br.com.andersonalves.sop_api.modules.empenho.dtos.ListEmpenhoByDespesaIdOutputDTO;
-import br.com.andersonalves.sop_api.modules.empenho.entities.EmpenhoEntity;
 import br.com.andersonalves.sop_api.modules.empenho.services.CreateEmpenhoService;
 import br.com.andersonalves.sop_api.modules.empenho.services.DeleteEmpenhoService;
 import br.com.andersonalves.sop_api.modules.empenho.services.ListEmpenhoByIdService;
@@ -46,7 +44,7 @@ public class EmpenhoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<List<ListEmpenhoByDespesaIdOutputDTO>> listAllDespesa(@PathVariable UUID id) {
+    public ResponseEntity<List<ListEmpenhoByDespesaIdOutputDTO>> listEmpenhoByDespesaId(@PathVariable UUID id) {
         List<ListEmpenhoByDespesaIdOutputDTO> empenhos = this.listEmpenhoByIdService.execute(id);
         return ResponseEntity.ok(empenhos);
     }
