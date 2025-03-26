@@ -66,17 +66,4 @@ public class DespesaEntity {
     @Column(nullable = false)
     private StatusDespesa status = StatusDespesa.AGUARDANDO_EMPENHO;
 
-    // public DespesaEntity(String numeroProtocolo, TipoDespesa tipoDespesa, LocalDateTime dataProtocolo,
-    //         LocalDate dataVencimento, String credor, String descricao,
-    //         BigDecimal valor, StatusDespesa status) {
-    //     this.numeroProtocolo = numeroProtocolo;
-    //     this.tipoDespesa = tipoDespesa;
-    //     this.dataProtocolo = dataProtocolo;
-    //     this.dataVencimento = dataVencimento;
-    //     this.credor = credor;
-    //     this.descricao = descricao;
-    //     this.valor = valor;
-    //     this.status = status;
-    // }
-
 }

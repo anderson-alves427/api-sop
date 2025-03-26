@@ -41,6 +41,7 @@ public class CreateEmpenhoService {
         EmpenhoEntity empenho = new EmpenhoEntity(numeroEmpenho, empenhoDto.dataEmpenho(),
                 empenhoDto.valorEmpenho(), empenhoDto.observacao(), empenhoDto.despesaId());
 
+        System.out.println(empenho);
         return this.empenhoRepository.save(empenho);
     }
 

@@ -23,8 +23,6 @@ import br.com.andersonalves.sop_api.modules.empenho.services.CreateEmpenhoServic
 import br.com.andersonalves.sop_api.modules.empenho.services.DeleteEmpenhoService;
 import br.com.andersonalves.sop_api.modules.empenho.services.EditEmpenhoService;
 import br.com.andersonalves.sop_api.modules.empenho.services.ListEmpenhoByIdService;
-import br.com.andersonalves.sop_api.modules.pagamento.dtos.EditPagamentoDTO;
-import br.com.andersonalves.sop_api.modules.pagamento.entity.PagamentoEntity;
 import jakarta.validation.Valid;
 
 @RestController
