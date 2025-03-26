@@ -2,6 +2,7 @@ package br.com.andersonalves.sop_api.modules.pagamento.services;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class CreatePagamentoService {
             throw new IllegalStateException("O valor do pagamento ultrapassa o valor do empenho associado.");
         }
 
-        String numeroPagamento = this.generateNumeroPagamento(pagamentoDto.dataPagamento());
+        String numeroPagamento = this.gerarateNumeroPagamento(pagamentoDto.dataPagamento());
 
         PagamentoEntity pagamento = new PagamentoEntity(numeroPagamento, pagamentoDto.dataPagamento(),
                 pagamentoDto.valorPagamento(), pagamentoDto.observacao(), pagamentoDto.empenhoId());
@@ -42,9 +43,20 @@ public class CreatePagamentoService {
         return this.pagamentoRepository.save(pagamento);
     }
 
-    private String generateNumeroPagamento(LocalDate dataPagamento) {
-        int ano = dataPagamento.getYear();
-        long sequencial = pagamentoRepository.countByAno(ano) + 1;
-        return String.format("%dNP%04d", ano, sequencial);
+    private String gerarateNumeroPagamento(LocalDate dataPagamento) {
+        String anoPagamento = String.valueOf(dataPagamento.getYear());
+        String prefixo = anoPagamento + "NP";
+
+        Optional<String> ultimoEmpenho = pagamentoRepository.findUltimoNumeroPagamento(prefixo);
+
+        int proximoNumero = 1;
+        if (ultimoEmpenho.isPresent()) {
+            String ultimo = ultimoEmpenho.get();
+            String sequencialStr = ultimo.substring(6);
+            proximoNumero = Integer.parseInt(sequencialStr) + 1;
+        }
+
+        String sequencialFormatado = String.format("%04d", proximoNumero);
+        return prefixo + sequencialFormatado;
     }
 }

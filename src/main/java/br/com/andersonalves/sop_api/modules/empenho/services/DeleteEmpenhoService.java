@@ -19,8 +19,6 @@ public class DeleteEmpenhoService {
 
     public void execute(UUID id) {
 
-        System.out.println(pagamentoRepository.existsByEmpenhoId(id));
-
         if (pagamentoRepository.existsByEmpenhoId(id)) {
             throw new IllegalStateException("Operção não permitida! Existe pagamento associado!");
 
