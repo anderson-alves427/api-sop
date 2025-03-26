@@ -2,6 +2,7 @@ package br.com.andersonalves.sop_api.modules.empenho.services;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class CreateEmpenhoService {
             throw new IllegalStateException("O valor do empenho ultrapassa o valor da despesa associada.");
         }
 
-        String numeroEmpenho = this.generateNumeroEmpenho(empenhoDto.dataEmpenho());
+        String numeroEmpenho = gerarNumeroEmpenho(empenhoDto.dataEmpenho());
 
         EmpenhoEntity empenho = new EmpenhoEntity(numeroEmpenho, empenhoDto.dataEmpenho(),
                 empenhoDto.valorEmpenho(), empenhoDto.observacao(), empenhoDto.despesaId());
@@ -43,9 +44,20 @@ public class CreateEmpenhoService {
         return this.empenhoRepository.save(empenho);
     }
 
-    private String generateNumeroEmpenho(LocalDate dataEmpenho) {
-        int ano = dataEmpenho.getYear();
-        long sequencial = empenhoRepository.countByAno(ano) + 1;
-        return String.format("%dNE%04d", ano, sequencial);
+    private String gerarNumeroEmpenho(LocalDate dataEmpenho) {
+        String anoEmpenho = String.valueOf(dataEmpenho.getYear());
+        String prefixo = anoEmpenho + "NE";
+
+        Optional<String> ultimoEmpenho = empenhoRepository.findUltimoNumeroEmpenho(prefixo);
+
+        int proximoNumero = 1;
+        if (ultimoEmpenho.isPresent()) {
+            String ultimo = ultimoEmpenho.get();
+            String sequencialStr = ultimo.substring(6);
+            proximoNumero = Integer.parseInt(sequencialStr) + 1;
+        }
+
+        String sequencialFormatado = String.format("%04d", proximoNumero);
+        return prefixo + sequencialFormatado;
     }
 }

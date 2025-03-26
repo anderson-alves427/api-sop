@@ -2,6 +2,7 @@ package br.com.andersonalves.sop_api.modules.empenho.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,8 +13,8 @@ import br.com.andersonalves.sop_api.modules.empenho.entities.EmpenhoEntity;
 
 public interface EmpenhoRepository extends JpaRepository<EmpenhoEntity, UUID> {
 
-    @Query("SELECT COUNT(e) FROM EmpenhoEntity e WHERE EXTRACT(YEAR FROM e.dataEmpenho) = :ano")
-    long countByAno(@Param("ano") int ano);
+    @Query("SELECT e.numeroEmpenho FROM EmpenhoEntity e WHERE e.numeroEmpenho LIKE :ano% ORDER BY e.numeroEmpenho DESC LIMIT 1")
+    Optional<String> findUltimoNumeroEmpenho(@Param("ano") String ano);
 
     boolean existsByDespesaId(UUID despesaId);
 
